@@ -49,6 +49,15 @@ final class WAM_Attribute_Manager {
 				continue;
 			}
 
+			if ( ! WAM_Helper::register_attribute_taxonomy( (int) $id ) ) {
+				$result['errors'][] = array(
+					'name' => $definition['name'],
+					'slug' => $definition['slug'],
+					'message' => __( 'The WooCommerce attribute taxonomy could not be registered.', 'woocommerce-attribute-manager' ),
+				);
+				continue;
+			}
+
 			$terms = WAM_Term_Manager::create_terms( (int) $id, $definition['values'] );
 			if ( ! empty( $terms['errors'] ) ) {
 				$result['errors'] = array_merge( $result['errors'], $terms['errors'] );

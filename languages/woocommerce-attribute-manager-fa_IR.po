@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Attribute Manager 1.3.0\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: woocommerce-attribute-manager\n"
+
+msgid "Attribute Groups"
+msgstr "گروه‌های ویژگی"
+
+msgid "Groups are reusable templates. They only add the selected Attribute rows to a product. Terms are not automatically selected for the product."
+msgstr "گروه‌ها قالب‌های قابل استفاده مجدد هستند. آن‌ها فقط ردیف ویژگی‌های انتخاب‌شده را به محصول اضافه می‌کنند و مقادیر ویژگی‌ها به‌صورت خودکار برای محصول انتخاب نمی‌شوند."
+
+msgid "Save Groups"
+msgstr "ذخیره گروه‌ها"
+
+msgid "Saved Groups"
+msgstr "گروه‌های ذخیره‌شده"
+
+msgid "No groups have been created yet."
+msgstr "هنوز هیچ گروهی ایجاد نشده است."
+
+msgid "Group"
+msgstr "گروه"
+
+msgid "Attributes"
+msgstr "ویژگی‌ها"
+
+msgid "Actions"
+msgstr "عملیات"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete Selected Groups"
+msgstr "حذف گروه‌های انتخاب‌شده"
+
+msgid "Deleting a group does not delete its WooCommerce Attributes or Terms. Only the reusable group is removed."
+msgstr "حذف یک گروه، ویژگی‌ها یا مقادیر WooCommerce را حذف نمی‌کند و فقط خود گروه قابل استفاده مجدد حذف می‌شود."
+
+msgid "Deleted %d attribute groups."
+msgstr "%d گروه ویژگی حذف شد."
+
+msgid "Groups saved successfully."
+msgstr "گروه‌ها با موفقیت ذخیره شدند."
+
+msgid "Create WooCommerce Attributes"
+msgstr "ساخت ویژگی‌های WooCommerce"
+
+msgid "Current WooCommerce Attributes"
+msgstr "ویژگی‌های فعلی WooCommerce"
+
+msgid "Delete Selected Attributes"
+msgstr "حذف ویژگی‌های انتخاب‌شده"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Slug"
+msgstr "نامک"
+
+msgid "Terms"
+msgstr "مقادیر"
+
+msgid "AI Structure Guide"
+msgstr "راهنمای ساختار هوش مصنوعی"
+
+msgid "Copy AI Prompt"
+msgstr "کپی Prompt هوش مصنوعی"
+
+msgid "Attribute Group"
+msgstr "گروه ویژگی"
+
+msgid "Select a group"
+msgstr "یک گروه را انتخاب کنید"
+
+msgid "Add Group"
+msgstr "افزودن گروه"
+
+msgid "Could not add the selected attribute group. Please check the browser console for details."
+msgstr "افزودن گروه ویژگی انتخاب‌شده انجام نشد. لطفاً Console مرورگر را برای جزئیات بررسی کنید."
+
+msgid "Please select at least one group."
+msgstr "لطفاً حداقل یک گروه را انتخاب کنید."
+
+msgid "Please select at least one attribute."
+msgstr "لطفاً حداقل یک ویژگی را انتخاب کنید."
+
+msgid "Processed: %d new, %d existing, %d errors."
+msgstr "پردازش شد: %d ویژگی جدید، %d ویژگی موجود، %d خطا."
+
+msgid "Deleted %d attributes. Errors: %d."
+msgstr "%d ویژگی حذف شد. خطاها: %d."
+
+msgid "Are you sure you want to permanently delete the selected WooCommerce attributes and their terms?"
+msgstr "آیا مطمئن هستید که می‌خواهید ویژگی‌های انتخاب‌شده WooCommerce و مقادیر آن‌ها را برای همیشه حذف کنید؟"

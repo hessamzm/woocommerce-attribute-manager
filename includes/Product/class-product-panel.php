@@ -81,7 +81,7 @@ final class WAM_Product_Panel {
 				'nonce' => wp_create_nonce( 'wp_rest' ),
 				'i18n' => array(
 					'loading' => __( 'Loading...', 'woocommerce-attribute-manager' ),
-					'error' => __( 'Could not load the selected group.', 'woocommerce-attribute-manager' ),
+					'error' => __( 'Could not add the selected attribute group. Please check the browser console for details.', 'woocommerce-attribute-manager' ),
 				),
 			)
 		);
