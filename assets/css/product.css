@@ -1,0 +1,12 @@
+.wam-product-group-box {
+	margin: 12px 0;
+	padding: 12px;
+	border: 1px solid #dcdcde;
+	background: #f6f7f7;
+}
+
+.wam-product-group-box .description {
+	display: block;
+	margin-top: 6px;
+	margin-left: 120px;
+}

@@ -1,0 +1,24 @@
+.wam-wrap {
+	max-width: 1200px;
+}
+
+.wam-code {
+	font-family: Consolas, Monaco, monospace;
+	line-height: 1.6;
+	direction: ltr;
+	text-align: left;
+}
+
+.wam-pre {
+	white-space: pre-wrap;
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	padding: 16px;
+}
+
+.wam-product-group-box {
+	margin: 12px 0;
+	padding: 12px;
+	border: 1px solid #dcdcde;
+	background: #f6f7f7;
+}
