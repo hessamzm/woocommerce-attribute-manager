@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Attribute Manager
  * Plugin URI: https://github.com/hessamzm
  * Description: Create WooCommerce attributes and reusable attribute groups.
- * Version: 1.0.0
+ * Version: 1.3.1
  * Author: hessamzm
  * Author URI: https://github.com/hessamzm
  * Text Domain: woocommerce-attribute-manager
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WAM_VERSION', '1.3.0' );
+define( 'WAM_VERSION', '1.3.1' );
 define( 'WAM_FILE', __FILE__ );
 define( 'WAM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WAM_URL', plugin_dir_url( __FILE__ ) );

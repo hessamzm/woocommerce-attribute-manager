@@ -120,6 +120,16 @@
 		syncAttributeSearch();
 	}
 
+	function encodeGroupKey(value) {
+		value = String(value || '');
+		try {
+			value = decodeURIComponent(value);
+		} catch (error) {
+			// Keep the original value if it is not percent-encoded.
+		}
+		return encodeURIComponent(value);
+	}
+
 	async function addGroup() {
 		const group = $('#wam_attribute_group').val();
 		if (!group) return;
@@ -135,7 +145,7 @@
 			$button.prop('disabled', true);
 
 			const response = await $.ajax({
-				url: String(wam.restUrl) + 'groups/' + encodeURIComponent(group),
+				url: String(wam.restUrl) + 'groups/' + encodeGroupKey(group),
 				method: 'GET',
 				beforeSend: function (xhr) {
 					xhr.setRequestHeader('X-WP-Nonce', wam.nonce);
