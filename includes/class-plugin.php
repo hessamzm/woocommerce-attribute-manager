@@ -30,6 +30,8 @@ final class WAM_Plugin {
 			'includes/Admin/pages/class-groups-page.php',
 			'includes/Admin/pages/class-ai-guide-page.php',
 			'includes/Product/class-product-panel.php',
+			'includes/Product/class-product-terms-ajax.php',
+			'includes/Product/class-product-terms-parser.php',
 			'includes/REST/class-rest-controller.php',
 			'includes/REST/class-rest-routes.php',
 		);

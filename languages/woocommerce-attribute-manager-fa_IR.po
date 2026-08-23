@@ -96,3 +96,55 @@ msgstr "%d ویژگی حذف شد. خطاها: %d."
 
 msgid "Are you sure you want to permanently delete the selected WooCommerce attributes and their terms?"
 msgstr "آیا مطمئن هستید که می‌خواهید ویژگی‌های انتخاب‌شده WooCommerce و مقادیر آن‌ها را برای همیشه حذف کنید؟"
+
+msgid "AI Product Context"
+msgstr "اطلاعات محصول برای هوش مصنوعی"
+
+msgid "AI Product Attribute Terms"
+msgstr "مقادیر ویژگی محصول با هوش مصنوعی"
+
+msgid "Load Selected Attributes"
+msgstr "دریافت ویژگی‌های انتخاب‌شده"
+
+msgid "Generate AI Prompt"
+msgstr "ساخت Prompt هوش مصنوعی"
+
+msgid "Product Context"
+msgstr "اطلاعات محصول"
+
+msgid "AI Terms Output"
+msgstr "خروجی مقادیر هوش مصنوعی"
+
+msgid "Apply Terms to Product"
+msgstr "اعمال مقادیر به محصول"
+
+msgid "Adds only the Attribute rows. Term values are not selected automatically."
+msgstr "فقط ردیف‌های ویژگی را اضافه می‌کند و مقادیر ویژگی به‌صورت خودکار انتخاب نمی‌شوند."
+
+msgid "First add the Attribute rows with a group. Then load the selected Attributes, give the AI the product context, and paste its term output here."
+msgstr "ابتدا ویژگی‌ها را با یک گروه به محصول اضافه کنید. سپس ویژگی‌های انتخاب‌شده را دریافت کنید، اطلاعات محصول را به هوش مصنوعی بدهید و خروجی مقادیر را اینجا وارد کنید."
+
+msgid "No taxonomy attributes are currently attached to this product."
+msgstr "در حال حاضر هیچ ویژگی Taxonomy به این محصول متصل نیست."
+
+msgid "Load the selected Attributes first."
+msgstr "ابتدا ویژگی‌های انتخاب‌شده را دریافت کنید."
+
+msgid "Product attribute terms were applied successfully."
+msgstr "مقادیر ویژگی‌های محصول با موفقیت اعمال شدند."
+
+msgid "Could not apply product attribute terms."
+msgstr "اعمال مقادیر ویژگی‌های محصول انجام نشد."
+
+msgid "Product not found."
+msgstr "محصول پیدا نشد."
+
+msgid "No valid attribute definitions were found."
+msgstr "ساختار معتبر ویژگی پیدا نشد."
+
+msgid "This attribute is not attached to the product."
+msgstr "این ویژگی به محصول متصل نیست."
+
+msgid "None of the supplied term values exist for this attribute."
+msgstr "هیچ‌یک از مقادیر واردشده برای این ویژگی در فروشگاه وجود ندارد."
+

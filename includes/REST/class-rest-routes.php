@@ -22,5 +22,26 @@ final class WAM_REST_Routes {
 				),
 			)
 		);
+		register_rest_route(
+			'wam/v1',
+			'/products/attributes',
+			array(
+				'methods'             => WP_REST_Server::READABLE,
+				'callback'            => array( 'WAM_REST_Controller', 'get_product_attributes' ),
+				'permission_callback' => array( 'WAM_REST_Controller', 'permissions' ),
+				'args'                => array(
+					'product_id' => array(
+						'required'          => true,
+						'sanitize_callback' => 'absint',
+					),
+					'taxonomies' => array(
+						'required' => false,
+						'type' => 'array',
+						'items' => array( 'type' => 'string' ),
+					),
+				),
+			)
+		);
+
 	}
 }
