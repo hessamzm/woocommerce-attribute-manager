@@ -25,6 +25,7 @@ final class WAM_Plugin {
 			'includes/Groups/class-group-manager.php',
 			'includes/Admin/class-admin.php',
 			'includes/Admin/class-menu.php',
+			'includes/Settings/class-settings.php',
 			'includes/Admin/class-assets.php',
 			'includes/Admin/pages/class-attributes-page.php',
 			'includes/Admin/pages/class-groups-page.php',
@@ -41,13 +42,35 @@ final class WAM_Plugin {
 		}
 	}
 
+
+	public function filter_locale( string $locale ): string {
+		if ( ! is_admin() || ! class_exists( 'WAM_Settings' ) ) {
+			return $locale;
+		}
+
+		$selected = WAM_Settings::get( 'language', 'site' );
+
+		if ( 'fa_IR' === $selected ) {
+			return 'fa_IR';
+		}
+
+		if ( 'en_US' === $selected ) {
+			return 'en_US';
+		}
+
+		return $locale;
+	}
+
 	public function init(): void {
+		add_filter( 'locale', array( $this, 'filter_locale' ) );
+
 		load_plugin_textdomain(
 			'woocommerce-attribute-manager',
 			false,
 			dirname( WAM_BASENAME ) . '/languages'
 		);
 
+		WAM_Settings::init();
 		WAM_Admin::init();
 		WAM_Product_Panel::init();
 		WAM_REST_Routes::init();

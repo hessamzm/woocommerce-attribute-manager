@@ -53,30 +53,26 @@ final class WAM_Product_Panel {
 				<div class="wam-product-terms-box">
 					<h3><?php esc_html_e( 'AI Product Attribute Terms', 'woocommerce-attribute-manager' ); ?></h3>
 
-					<p>
-						<?php esc_html_e( 'First add the Attribute rows with a group. Then load the selected Attributes, give the AI the product context, and paste its term output here.', 'woocommerce-attribute-manager' ); ?>
+					<p class="description">
+						<?php esc_html_e( 'Generate the AI prompt from the Attributes currently selected for this product. The product title and product description are used automatically.', 'woocommerce-attribute-manager' ); ?>
 					</p>
 
 					<p>
-						<button type="button" class="button" id="wam-load-product-attributes" data-product-id="<?php echo esc_attr( $product_id ); ?>">
-							<?php esc_html_e( 'Load Selected Attributes', 'woocommerce-attribute-manager' ); ?>
-						</button>
-
-						<button type="button" class="button button-primary" id="wam-generate-terms-prompt">
+						<button type="button" class="button button-primary" id="wam-generate-terms-prompt" data-product-id="<?php echo esc_attr( $product_id ); ?>">
 							<?php esc_html_e( 'Generate AI Prompt', 'woocommerce-attribute-manager' ); ?>
 						</button>
 					</p>
 
 					<p>
-						<label for="wam-product-ai-context">
-							<strong><?php esc_html_e( 'Product Context', 'woocommerce-attribute-manager' ); ?></strong>
+						<label for="wam-product-ai-prompt">
+							<strong><?php esc_html_e( 'AI Prompt Output', 'woocommerce-attribute-manager' ); ?></strong>
 						</label>
-						<textarea id="wam-product-ai-context" rows="6" class="large-text" placeholder="<?php echo esc_attr__( 'Product name, model, brand, technical specifications, use case, package contents, and any other information needed to determine the exact attribute values.', 'woocommerce-attribute-manager' ); ?>"></textarea>
+						<textarea id="wam-product-ai-prompt" rows="18" class="large-text code wam-code" readonly placeholder="<?php echo esc_attr__( 'The generated AI prompt will appear here.', 'woocommerce-attribute-manager' ); ?>"></textarea>
 					</p>
 
 					<p>
 						<label for="wam-product-terms-input">
-							<strong><?php esc_html_e( 'AI Terms Output', 'woocommerce-attribute-manager' ); ?></strong>
+							<strong><?php esc_html_e( 'AI Terms Input', 'woocommerce-attribute-manager' ); ?></strong>
 						</label>
 						<textarea id="wam-product-terms-input" rows="14" class="large-text code wam-code" placeholder="[attribute]
 id: 91
@@ -156,8 +152,8 @@ values: Intel Core i5"></textarea>
 				'nonceApply' => wp_create_nonce( 'wam_product_terms' ),
 				'i18n' => array(
 					'noAttributes' => __( 'No taxonomy attributes are currently attached to this product.', 'woocommerce-attribute-manager' ),
-					'loadFirst' => __( 'Load the selected Attributes first.', 'woocommerce-attribute-manager' ),
-					'promptReady' => __( 'The AI prompt is ready. Copy it, add the product information, and send it to your AI tool.', 'woocommerce-attribute-manager' ),
+					'promptReady' => __( 'The AI prompt is ready. Copy it and send it to your AI tool.', 'woocommerce-attribute-manager' ),
+					'generating' => __( 'Generating AI prompt...', 'woocommerce-attribute-manager' ),
 					'applied' => __( 'Product attribute terms were applied successfully.', 'woocommerce-attribute-manager' ),
 					'failed' => __( 'Could not apply product attribute terms.', 'woocommerce-attribute-manager' ),
 				),

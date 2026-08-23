@@ -7,7 +7,24 @@ final class WAM_AI_Guide_Page {
 			wp_die( esc_html__( 'You do not have permission to view this page.', 'woocommerce-attribute-manager' ) );
 		}
 
-		$prompt = <<<PROMPT
+		$attribute_taxonomies = function_exists( 'wc_get_attribute_taxonomies' )
+			? wc_get_attribute_taxonomies()
+			: array();
+
+		$attribute_lines = array();
+		foreach ( $attribute_taxonomies as $attribute ) {
+			$attribute_lines[] = sprintf(
+				'- %s | slug: %s',
+				$attribute->attribute_label,
+				$attribute->attribute_name
+			);
+		}
+
+		$all_attributes = ! empty( $attribute_lines )
+			? implode( "\n", $attribute_lines )
+			: '- No existing WooCommerce global Attributes found.';
+
+		$attribute_prompt = <<<PROMPT
 You are a WooCommerce attribute architecture specialist.
 
 BUSINESS AND PRODUCT CONTEXT
@@ -26,21 +43,18 @@ BUSINESS AND PRODUCT CONTEXT
 - Other useful business information:
 
 TASK
-Based on the business and product information above, generate a clean, practical WooCommerce attribute structure that fits the actual products.
+Based on the business and product information above, generate a clean, practical WooCommerce global Attribute structure that fits the actual products.
 
 RULES
 1. Every attribute starts with [attribute].
-2. name: is the customer-facing attribute name.
+2. name: is the customer-facing Attribute name.
 3. slug: is REQUIRED and MUST be an English-only WooCommerce slug.
-4. slug: may contain only lowercase English letters a-z, numbers 0-9, hyphens or underscores.
-5. Prefer clear semantic English slugs such as color, size, material, brand, capacity, voltage.
-6. Do not use Persian, Arabic or other non-English characters in slug.
-7. values: contains values separated by |.
-8. Avoid duplicate attributes and duplicate values.
-9. Create only attributes relevant to the described business and products.
-10. Create reusable groups with [group].
-11. Group attributes must reference names defined in the attribute section.
-12. Return only the supported structure and no explanation outside it.
+4. slug may contain only lowercase English letters a-z, numbers 0-9, hyphens or underscores.
+5. values: contains reusable Terms separated by |.
+6. Avoid duplicate Attributes and duplicate Terms.
+7. Create only Attributes relevant to the described business and products.
+8. Do not create Attribute Groups in this output.
+9. Return only the Attribute structure and no explanation outside it.
 
 OUTPUT FORMAT
 
@@ -53,25 +67,75 @@ values: Red | Blue | Green
 name: Size
 slug: size
 values: S | M | L | XL
+PROMPT;
 
-[group]
-name: Clothing Details
-attributes: Color | Size
+		$group_prompt = <<<PROMPT
+You are a WooCommerce Attribute Group architecture specialist.
+
+Your task is to organize the EXISTING WooCommerce Attributes below into practical Attribute Groups for the described business and products.
 
 IMPORTANT
-Use the business and product context as the primary source for deciding which attributes are useful. Do not invent irrelevant specifications. If the context is incomplete, make only conservative, practical assumptions.
+The Attribute list below is automatically supplied by the WooCommerce store. The user does NOT need to copy or enter the Attributes manually.
+
+EXISTING WOOCOMMERCE ATTRIBUTES
+$all_attributes
+
+BUSINESS AND PRODUCT CONTEXT
+- Business name:
+- Business type / industry:
+- Main product categories:
+- Product types:
+- Target customers:
+- Market / country:
+- Main brands:
+- Important product specifications:
+- Common product types and use cases:
+- Other useful business information:
+
+TASK
+Create practical groups that can be used when adding Attributes to WooCommerce products.
+
+RULES
+1. Use ONLY Attribute names from the EXISTING WOOCOMMERCE ATTRIBUTES list.
+2. Do not create new Attributes.
+3. Do not rename Attributes.
+4. Do not create Terms.
+5. A Group starts with [group].
+6. name: is the customer-facing Group name.
+7. attributes: contains existing Attribute names separated by |.
+8. An Attribute may appear in more than one Group when it is useful.
+9. Create groups based on actual product types and use cases.
+10. Avoid meaningless, overly broad, or duplicate groups.
+11. Return only [group] blocks and no explanations.
+
+OUTPUT FORMAT
+
+[group]
+name: Camera Details
+attributes: Camera Type | Resolution | Video Technology | Lens | Lens Type | Image Sensor
+
+[group]
+name: Network Details
+attributes: Connectivity | Power Supply
 PROMPT;
+
 		?>
 		<div class="wrap wam-wrap">
 			<h1><?php esc_html_e( 'AI Structure Guide', 'woocommerce-attribute-manager' ); ?></h1>
-			<p><?php esc_html_e( 'Fill in the business and product context, then copy the prompt into ChatGPT or another AI tool. The generated structure can be pasted into the Attribute Manager.', 'woocommerce-attribute-manager' ); ?></p>
+			<p><?php esc_html_e( 'Use the Attribute Prompt to create global Attributes. Use the Group Prompt to organize the Attributes that already exist in WooCommerce into reusable groups.', 'woocommerce-attribute-manager' ); ?></p>
 
-			<textarea id="wam-ai-template" class="large-text code wam-code" rows="40" readonly><?php echo esc_textarea( $prompt ); ?></textarea>
+			<h2><?php esc_html_e( 'Attribute Creation Prompt', 'woocommerce-attribute-manager' ); ?></h2>
+			<p><?php esc_html_e( 'Use this prompt when you want AI to design and create the Attribute structure for your business and products.', 'woocommerce-attribute-manager' ); ?></p>
+			<textarea id="wam-ai-attribute-template" class="large-text code wam-code" rows="32" readonly><?php echo esc_textarea( $attribute_prompt ); ?></textarea>
+			<p><button type="button" class="button button-primary wam-copy-ai-prompt" data-target="wam-ai-attribute-template"><?php esc_html_e( 'Copy Attribute Prompt', 'woocommerce-attribute-manager' ); ?></button></p>
 
-			<p><button type="button" class="button button-primary" id="wam-copy-ai-prompt"><?php esc_html_e( 'Copy AI Prompt', 'woocommerce-attribute-manager' ); ?></button></p>
+			<h2><?php esc_html_e( 'Attribute Group Creation Prompt', 'woocommerce-attribute-manager' ); ?></h2>
+			<p><?php esc_html_e( 'All existing WooCommerce Attributes are inserted automatically. You only need to provide your business and product context before sending the prompt to AI.', 'woocommerce-attribute-manager' ); ?></p>
+			<textarea id="wam-ai-group-template" class="large-text code wam-code" rows="34" readonly><?php echo esc_textarea( $group_prompt ); ?></textarea>
+			<p><button type="button" class="button button-primary wam-copy-ai-prompt" data-target="wam-ai-group-template"><?php esc_html_e( 'Copy Group Prompt', 'woocommerce-attribute-manager' ); ?></button></p>
 
-			<h2><?php esc_html_e( 'Attribute Input Structure', 'woocommerce-attribute-manager' ); ?></h2>
-			<pre class="wam-code wam-pre"><?php echo esc_html( "[attribute]\nname: رنگ\nslug: color\nvalues: قرمز | آبی | سبز\n\n[attribute]\nname: سایز\nslug: size\nvalues: S | M | L | XL\n\n[group]\nname: مشخصات لباس\nattributes: رنگ | سایز" ); ?></pre>
+			<h2><?php esc_html_e( 'Current WooCommerce Attributes', 'woocommerce-attribute-manager' ); ?></h2>
+			<pre class="wam-code wam-pre"><?php echo esc_html( $all_attributes ); ?></pre>
 		</div>
 		<?php
 	}

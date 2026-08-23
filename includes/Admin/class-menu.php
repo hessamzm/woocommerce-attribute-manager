@@ -47,5 +47,14 @@ final class WAM_Menu {
 			'wam-ai-guide',
 			array( 'WAM_AI_Guide_Page', 'render' )
 		);
+
+		add_submenu_page(
+			'wam-attributes',
+			__( 'Settings', 'woocommerce-attribute-manager' ),
+			__( 'Settings', 'woocommerce-attribute-manager' ),
+			$capability,
+			'wam-settings',
+			array( 'WAM_Settings', 'render' )
+		);
 	}
 }

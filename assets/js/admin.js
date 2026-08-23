@@ -87,18 +87,34 @@
 			});
 		}
 
-		const copy = document.getElementById('wam-copy-ai-prompt');
-		const prompt = document.getElementById('wam-ai-template');
+		document.querySelectorAll('.wam-copy-ai-prompt').forEach(function (copy) {
+			const targetId = copy.getAttribute('data-target');
+			const prompt = targetId ? document.getElementById(targetId) : null;
 
-		if (copy && prompt) {
+			if (!prompt) {
+				return;
+			}
+
 			copy.addEventListener('click', function () {
-				navigator.clipboard.writeText(prompt.value).then(function () {
+				const text = prompt.value || prompt.textContent || '';
+
+				const done = function () {
+					const original = copy.textContent;
 					copy.textContent = 'Copied';
 					setTimeout(function () {
-						copy.textContent = 'Copy AI Prompt';
+						copy.textContent = original;
 					}, 1500);
-				});
+				};
+
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					navigator.clipboard.writeText(text).then(done);
+				} else {
+					prompt.focus();
+					prompt.select();
+					document.execCommand('copy');
+					done();
+				}
 			});
-		}
+		});
 	});
 })();

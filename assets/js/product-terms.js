@@ -4,7 +4,7 @@
 	let productAttributes = [];
 
 	function productId() {
-		return parseInt($('#wam-load-product-attributes').data('product-id') || '0', 10);
+		return parseInt($('#wam-generate-terms-prompt').data('product-id') || '0', 10);
 	}
 
 	function meta() {
@@ -119,19 +119,25 @@
 		});
 	}
 
-	function generatePrompt() {
-		const cfg = meta();
-		const context = $('#wam-product-ai-context').val().trim();
-
-		if (!productAttributes.length) {
-			window.alert(cfg.i18n.loadFirst);
-			return;
-		}
+	function buildPrompt(attributes) {
+		const id = productId();
+		const title = String($('#title').val() || '').trim();
+		const description = String($('#content').val() || '').trim();
+		const shortDescription = String($('#excerpt').val() || '').trim();
 
 		let output = '';
 		output += 'You are a WooCommerce product data specialist responsible for selecting exact existing WooCommerce term values for a specific product.\n\n';
 		output += 'PRODUCT INFORMATION\n';
-		output += context + '\n\n';
+		output += 'Product Title: ' + title + '\n\n';
+
+		if (description) {
+			output += 'Product Description:\n' + description + '\n\n';
+		}
+
+		if (shortDescription) {
+			output += 'Short Description:\n' + shortDescription + '\n\n';
+		}
+
 		output += 'TASK\n';
 		output += 'Analyze the product information and select the exact WooCommerce term values that apply to this product.\n';
 		output += 'You MUST select values only from the available_terms list for each attribute.\n';
@@ -139,7 +145,7 @@
 		output += 'If an attribute cannot be determined with reasonable certainty, omit that attribute.\n\n';
 		output += 'SELECTED PRODUCT ATTRIBUTES AND AVAILABLE WOOCOMMERCE TERMS\n\n';
 
-		productAttributes.forEach(function (a) {
+		attributes.forEach(function (a) {
 			const terms = Array.isArray(a.available_terms) ? a.available_terms : [];
 			const termNames = terms.map(function (term) {
 				return term.name;
@@ -170,8 +176,61 @@
 		output += 'slug: ATTRIBUTE_SLUG\n';
 		output += 'values: TERM';
 
-		$('#wam-product-terms-input').val(output);
-		window.alert(cfg.i18n.promptReady);
+		return output;
+	}
+
+	function loadSelectedAttributes() {
+		const id = productId();
+		const cfg = meta();
+		const taxonomies = getLiveTaxonomies();
+
+		return $.ajax({
+			url: cfg.ajaxUrl,
+			method: 'POST',
+			data: {
+				action: 'wam_load_product_attributes',
+				nonce: cfg.nonceApply,
+				product_id: id,
+				taxonomies: taxonomies
+			}
+		}).then(function (response) {
+			if (!response.success) {
+				return $.Deferred().reject(response).promise();
+			}
+
+			const data = response.data || {};
+			productAttributes = Array.isArray(data.attributes) ? data.attributes : [];
+			window.WAMSelectedProductAttributes = productAttributes;
+			render(productAttributes);
+
+			return productAttributes;
+		});
+	}
+
+	function generatePrompt() {
+		const cfg = meta();
+		const $button = $('#wam-generate-terms-prompt');
+
+		$button.prop('disabled', true).text(cfg.i18n.generating || 'Generating...');
+
+		loadSelectedAttributes()
+			.done(function (attributes) {
+				if (!attributes.length) {
+					window.alert(cfg.i18n.noAttributes || 'No Attributes are currently selected for this product.');
+					return;
+				}
+
+				const prompt = buildPrompt(attributes);
+				$('#wam-product-ai-prompt').val(prompt);
+				window.alert(cfg.i18n.promptReady);
+			})
+			.fail(function (xhr) {
+				console.error('WAM load selected product attributes:', xhr.responseText || xhr);
+				window.alert('Could not load the selected product attributes.');
+			})
+			.always(function () {
+				$button.prop('disabled', false).text('Generate AI Prompt');
+			});
 	}
 
 	function syncAppliedTermsToWooCommerceUI(applied) {
@@ -255,7 +314,7 @@
 		const id = productId();
 
 		if (!input) {
-			window.alert(cfg.i18n.loadFirst);
+			window.alert('Paste the AI Terms output into AI Terms Input first.');
 			return;
 		}
 
@@ -316,10 +375,6 @@
 		});
 	}
 
-	$(document).on('click', '#wam-load-product-attributes', function (e) {
-		e.preventDefault();
-		load();
-	});
 
 	$(document).on('click', '#wam-generate-terms-prompt', function (e) {
 		e.preventDefault();
