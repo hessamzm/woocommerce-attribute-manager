@@ -1,26 +1,26 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Attribute Manager 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/hessamzm\n"
 "Language: fa_IR\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-
-msgid "Settings"
-msgstr "تنظیمات"
-
-msgid "General Settings"
-msgstr "تنظیمات عمومی"
-
-msgid "Interface Language"
-msgstr "زبان رابط کاربری"
-
-msgid "WordPress Site Language"
-msgstr "زبان سایت وردپرس"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "AI API"
 msgstr "API هوش مصنوعی"
 
+msgid "AI Prompt Output"
+msgstr "خروجی پرامت هوش مصنوعی"
+
 msgid "AI Provider"
 msgstr "ارائه‌دهنده هوش مصنوعی"
+
+msgid "AI Structure Guide"
+msgstr "راهنمای ساختار هوش مصنوعی"
+
+msgid "AI Terms Input"
+msgstr "ورودی مقادیر ویژگی‌های هوش مصنوعی"
 
 msgid "API Endpoint"
 msgstr "آدرس API"
@@ -28,11 +28,83 @@ msgstr "آدرس API"
 msgid "API Key"
 msgstr "کلید API"
 
-msgid "Model"
-msgstr "مدل"
-
 msgid "API configuration is reserved for the automated AI workflow planned for future versions. Version 2 stores these settings but does not send requests automatically."
-msgstr "تنظیمات API برای گردش‌کار خودکار هوش مصنوعی در نسخه‌های آینده آماده شده است. نسخه ۲ این اطلاعات را ذخیره می‌کند اما هنوز به‌صورت خودکار درخواست ارسال نمی‌کند."
+msgstr "تنظیمات API برای گردش‌کار خودکار هوش مصنوعی در نسخه‌های آینده آماده شده است. نسخه ۲ این اطلاعات را ذخیره می‌کند اما هنوز درخواست خودکار ارسال نمی‌کند."
+
+msgid "Apply Terms to Product"
+msgstr "اعمال مقادیر ویژگی به محصول"
+
+msgid "Attribute Creation Prompt"
+msgstr "پرامت ساخت ویژگی"
+
+msgid "Attribute Group Creation Prompt"
+msgstr "پرامت ساخت گروه ویژگی"
+
+msgid "Attribute Groups"
+msgstr "گروه‌های ویژگی"
+
+msgid "Attribute Manager"
+msgstr "مدیریت ویژگی‌ها"
+
+msgid "Business and Product Context"
+msgstr "اطلاعات کسب‌وکار و محصول"
 
 msgid "Choose the interface language. Additional translations can be added through WordPress language files."
 msgstr "زبان رابط کاربری را انتخاب کنید. ترجمه‌های بیشتر را می‌توان از طریق فایل‌های زبان وردپرس اضافه کرد."
+
+msgid "Copy Attribute Prompt"
+msgstr "کپی پرامت ویژگی"
+
+msgid "Copy Group Prompt"
+msgstr "کپی پرامت گروه"
+
+msgid "Could not load the selected product attributes."
+msgstr "امکان بارگذاری ویژگی‌های انتخاب‌شده محصول وجود ندارد."
+
+msgid "Create Attributes"
+msgstr "ساخت ویژگی‌ها"
+
+msgid "Current WooCommerce Attributes"
+msgstr "ویژگی‌های فعلی ووکامرس"
+
+msgid "Existing WooCommerce Attributes"
+msgstr "ویژگی‌های موجود ووکامرس"
+
+msgid "General Settings"
+msgstr "تنظیمات عمومی"
+
+msgid "Generate AI Prompt"
+msgstr "ساخت پرامت هوش مصنوعی"
+
+msgid "Generating AI prompt..."
+msgstr "در حال ساخت پرامت هوش مصنوعی..."
+
+msgid "Interface Language"
+msgstr "زبان رابط کاربری"
+
+msgid "Model"
+msgstr "مدل"
+
+msgid "No Attributes are currently selected for this product."
+msgstr "در حال حاضر هیچ ویژگی‌ای برای این محصول انتخاب نشده است."
+
+msgid "Product Description:"
+msgstr "توضیحات محصول:"
+
+msgid "Product Information"
+msgstr "اطلاعات محصول"
+
+msgid "Product Title:"
+msgstr "عنوان محصول:"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Short Description:"
+msgstr "توضیحات کوتاه:"
+
+msgid "The AI prompt is ready. Copy it and send it to your AI tool."
+msgstr "پرامت هوش مصنوعی آماده است. آن را کپی کرده و برای ابزار هوش مصنوعی ارسال کنید."
+
+msgid "WordPress Site Language"
+msgstr "زبان سایت وردپرس"

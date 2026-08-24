@@ -74,7 +74,7 @@ The AI API configuration is intentionally preparation for a future automated wor
 
 ### Localization
 
-The plugin uses the standard WordPress translation system and includes English as the default language plus Persian (`fa_IR`).
+The plugin uses the standard WordPress translation system and includes English as the default language plus Persian (`fa_IR`). Plugin language selection is isolated to this plugin's text domain and does not change the global WordPress site language.
 
 To add another language, create the corresponding WordPress translation files in:
 

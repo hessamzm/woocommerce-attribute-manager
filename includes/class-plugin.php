@@ -43,26 +43,23 @@ final class WAM_Plugin {
 	}
 
 
-	public function filter_locale( string $locale ): string {
-		if ( ! is_admin() || ! class_exists( 'WAM_Settings' ) ) {
-			return $locale;
-		}
-
-		$selected = WAM_Settings::get( 'language', 'site' );
-
-		if ( 'fa_IR' === $selected ) {
-			return 'fa_IR';
-		}
-
-		if ( 'en_US' === $selected ) {
-			return 'en_US';
-		}
-
-		return $locale;
-	}
-
 	public function init(): void {
-		add_filter( 'locale', array( $this, 'filter_locale' ) );
+		/*
+		 * Keep the plugin language isolated to this text domain.
+		 * Never change WordPress' global locale.
+		 */
+		$language = class_exists( 'WAM_Settings' )
+			? WAM_Settings::get( 'language', 'site' )
+			: 'site';
+
+		if ( 'site' !== $language ) {
+			$mo_file = WP_PLUGIN_DIR . '/' . dirname( WAM_BASENAME ) . '/languages/woocommerce-attribute-manager-' . sanitize_key( $language ) . '.mo';
+
+			if ( file_exists( $mo_file ) ) {
+				load_textdomain( 'woocommerce-attribute-manager', $mo_file );
+				return;
+			}
+		}
 
 		load_plugin_textdomain(
 			'woocommerce-attribute-manager',
